@@ -1,0 +1,19 @@
+%h1
+  Authentication services - Setting
+
+Connected services:
+%br/
+- @services.each do |service|
+  = image_tag "#{service.provider}_64.png", :size => '64*64'
+  %div
+    = "Uid: #{service.uid}"
+  %div
+    = "Email: #{service.uemail}"
+
+%br/
+Available services:
+%br/
+= link_to image_tag("facebook_64.png", :title => 'Facebook'), 	omniauth_authorize_path(current_user,'facebook')
+= link_to image_tag("google_64.png", :title => 'Google'), 		omniauth_authorize_path(current_user,'google')
+= link_to image_tag("linkedin_64.png", :title => 'Linkedin'), 	omniauth_authorize_path(current_user,'linkedin')
+= link_to image_tag("twitter_64.png", :title => 'Twitter'), 	omniauth_authorize_path(current_user,'twitter')
