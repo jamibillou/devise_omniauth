@@ -6,8 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	    omniauth['info']['name'] ? name =  omniauth['info']['name'] : name = ''
       omniauth['extra']['raw_info']['id'] ?  uid =  omniauth['extra']['raw_info']['id'] : uid = ''
       omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
-
-	  connect(name,uid,provider)    	
+	    connect(name,uid,provider)    	
     else
       render :text => 'Omniauth is empty :/'
     end
@@ -20,7 +19,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       omniauth['extra']['raw_info']['name'] ? name =  omniauth['info']['name'] : name = ''
       omniauth['extra']['raw_info']['id'] ?  uid =  omniauth['extra']['raw_info']['id'] : uid = ''
       omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
-
       connect(name,uid,provider,email)
     else
       render :text => 'Omniauth is empty :/'
@@ -33,8 +31,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       omniauth['info']['name'] ? name =  omniauth['info']['name'] : name = ''
       omniauth['extra']['raw_info']['id'] ?  uid =  omniauth['extra']['raw_info']['id'] : uid = ''
       omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
-
-    connect(name,uid,provider)      
+      connect(name,uid,provider)      
     else
       render :text => 'Omniauth is empty :/'
     end  
@@ -85,7 +82,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         else
           auth = Service.find_by_uid_and_provider(uid,provider)
           if auth
-            flash[:notice] = service_route.capitalize + ' is already linked to your account.'
+            flash[:notice] = "#{provider} is already linked to your account."
             redirect_to services_path
           else
             current_user.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)

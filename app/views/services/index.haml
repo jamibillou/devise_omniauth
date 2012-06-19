@@ -5,11 +5,13 @@ Connected services:
 %br/
 - @services.each do |service|
   = image_tag "#{service.provider}_64.png", :size => '64*64'
-  %div
-    = "Uid: #{service.uid}"
-  %div
-    = "Email: #{service.uemail}"
-
+  %br/
+  = "Uid: #{service.uid}"
+  %br/
+  = "Email: #{service.uemail}"
+  %br/
+  = link_to 'Delete', service_path(service), :confirm => 'Are you sure?', :method => :delete
+  %br/
 %br/
 Available services:
 %br/

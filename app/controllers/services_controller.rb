@@ -4,6 +4,10 @@ class ServicesController < ApplicationController
   	@services = current_user.services
   end
 
-  def create
+  def destroy
+  	@service = current_user.services.find(params[:id])
+  	@service.destroy
+
+  	redirect_to services_path
   end
 end
